@@ -9,7 +9,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -30,16 +29,13 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = current_user.tasks.find_by(id: params[:id])
-
   end
 
   def update
-    @tasks = current_user.tasks.find_by(id: params[:id])
 
     if @task.update(task_params)
       flash[:success] = 'Task は正常に更新されました'
-      redirect_to root_url
+      redirect_to task_path
     else
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'Task は更新されませんでした'
