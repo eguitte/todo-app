@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'sessions/new'
-  get 'sessions/destroy'
   root to: 'tasks#index'
   
   get 'login', to: 'sessions#new'
